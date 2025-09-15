@@ -1,0 +1,12 @@
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\bin\Debug\MiniMart.exe.config
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\bin\Debug\MiniMart.exe
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\bin\Debug\MiniMart.pdb
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.csproj.AssemblyReference.cache
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.Properties.Resources.resources
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.csproj.GenerateResource.cache
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.csproj.CoreCompileInputs.cache
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.exe
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.pdb
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.Form1.resources
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\bin\Debug\Guna.UI2.dll
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.csproj.Up2Date
