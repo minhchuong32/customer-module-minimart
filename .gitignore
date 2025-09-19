@@ -1,1 +1,12 @@
-﻿
+﻿# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build outputs
+[Bb]in/
+[Oo]bj/
+
+# Packages / cache
+packages/
+*.cache
