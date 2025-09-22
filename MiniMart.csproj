@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -56,6 +56,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -68,10 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BUS\AccountBUS.cs" />
+    <Compile Include="BUS\StatisticsBUS.cs" />
+    <Compile Include="BUS\ExchangeRateBUS.cs" />
+    <Compile Include="BUS\MessageBUS.cs" />
     <Compile Include="BUS\GiftBUS.cs" />
     <Compile Include="BUS\InvoiceBUS.cs" />
     <Compile Include="BUS\CustomerBUS.cs" />
-    <Compile Include="CustomerDAL.cs" />
+    <Compile Include="DAL\StatisticsDAL.cs" />
+    <Compile Include="DAL\ExchangeRateDAL.cs" />
+    <Compile Include="DAL\MessageDAL.cs" />
     <Compile Include="DAL\InvoiceDAL.cs" />
     <Compile Include="DAL\GiftDAL.cs" />
     <Compile Include="DAL\AccountDAL.cs" />
@@ -83,10 +89,19 @@
     <Compile Include="GUI\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -126,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="resources\send.png" />
     <None Include="resources\create.png" />
     <None Include="resources\view.png" />
     <None Include="resources\delete.png" />

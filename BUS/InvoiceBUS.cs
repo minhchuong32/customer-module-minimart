@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using MiniMart.DAL;
 
 namespace MiniMart.BUS
@@ -6,13 +7,25 @@ namespace MiniMart.BUS
     public class InvoiceBUS
     {
         private readonly InvoiceDAL dal;
-        public InvoiceBUS(string connStr) { dal = new InvoiceDAL(connStr); }
 
-        public DataTable GetByCustomer(int customerId) => dal.GetByCustomer(customerId);
+        public InvoiceBUS(string connStr)
+        {
+            dal = new InvoiceDAL(connStr);
+        }
 
-        public DataTable ConvertToPoints(int customerId, int vnd, int point)
-            => dal.ConvertToPoints(customerId, vnd, point);
+        public DataTable GetByCustomer(int customerId)
+        {
+            return dal.GetByCustomer(customerId);
+        }
 
-        public DataTable GetTransactions(int customerId) => dal.GetTransactions(customerId);
+        public DataTable ConvertToPoints(int customerId, int invoiceId)
+        {
+            return dal.ConvertToPoints(customerId, invoiceId);
+        }
+
+        public DataTable GetTransactions(int customerId)
+        {
+            return dal.GetTransactions(customerId);
+        }
     }
 }

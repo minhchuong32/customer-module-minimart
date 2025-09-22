@@ -16,7 +16,8 @@ namespace MiniMart
             Application.SetCompatibleTextRenderingDefault(false);
 
             // chạy Form1 trong GUI
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
+
         }
     }
 }

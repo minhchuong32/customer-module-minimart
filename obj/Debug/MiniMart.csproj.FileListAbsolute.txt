@@ -10,3 +10,4 @@ G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.
 G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\bin\Debug\Guna.UI2.dll
 G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.csproj.Up2Date
 G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.GUI.Form1.resources
+G:\hcmute\semeter1-term1-2526\HQTCSDL\project_final\MiniMart\obj\Debug\MiniMart.GUI.LoginForm.resources

@@ -1,59 +1,97 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace MiniMart.DAL
 {
     public class InvoiceDAL
     {
         private readonly string _connStr;
-        public InvoiceDAL(string connStr) { _connStr = connStr; }
+
+        public InvoiceDAL(string connStr)
+        {
+            _connStr = connStr;
+        }
 
         public DataTable GetByCustomer(int customerId)
         {
-            using (SqlConnection conn = new SqlConnection(_connStr))
+            SqlConnection conn = new SqlConnection(_connStr);
+            string query = "SELECT * FROM dbo.fn_GetInvoicesByCustomer(@CustomerID)";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@CustomerID", customerId);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            try
             {
-                string query = "SELECT * FROM dbo.fn_GetInvoicesByCustomer(@CustomerID)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@CustomerID", customerId);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;
             }
+            finally
+            {
+                cmd.Dispose();
+                conn.Dispose();
+            }
         }
 
-        public DataTable ConvertToPoints(int customerId, int vnd, int point)
+        public DataTable ConvertToPoints(int customerId, int invoiceId)
         {
-            using (SqlConnection conn = new SqlConnection(_connStr))
-            using (SqlCommand cmd = new SqlCommand("dbo.usp_Invoice_ConvertToPoints", conn))
+            SqlConnection conn = new SqlConnection(_connStr);
+            SqlCommand cmd = new SqlCommand("dbo.usp_Invoice_ConvertToPoints", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@CustomerID", customerId);
+            cmd.Parameters.AddWithValue("@InvoiceID", invoiceId);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            try
             {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@CustomerID", customerId);
-                cmd.Parameters.AddWithValue("@VND", vnd);
-                cmd.Parameters.AddWithValue("@POINT", point);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
                 da.Fill(dt);
                 return dt;
+            }
+            finally
+            {
+                cmd.Dispose();
+                conn.Dispose();
             }
         }
 
         public DataTable GetTransactions(int customerId)
         {
-            using (SqlConnection conn = new SqlConnection(_connStr))
-            using (SqlCommand cmd = new SqlCommand("dbo.usp_LoyaltyHistory_Get", conn))
+            SqlConnection conn = null;
+            SqlCommand cmd = null;
+            SqlDataAdapter da = null;
+            DataTable dt = new DataTable();
+
+            try
             {
+                conn = new SqlConnection(_connStr);
+                cmd = new SqlCommand("usp_LoyaltyHistory_Get", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@CustomerID", customerId);
-                cmd.Parameters.AddWithValue("@StartDate", DBNull.Value);
-                cmd.Parameters.AddWithValue("@EndDate", DBNull.Value);
-                cmd.Parameters.AddWithValue("@InvoiceID", DBNull.Value);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
+                da = new SqlDataAdapter(cmd);
+
+                conn.Open();
                 da.Fill(dt);
-                return dt;
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi lấy lịch sử giao dịch: " + ex.Message, ex);
+            }
+            finally
+            {
+                if (da != null) da.Dispose();
+                if (cmd != null) cmd.Dispose();
+                if (conn != null && conn.State == ConnectionState.Open) conn.Close();
+                if (conn != null) conn.Dispose();
+            }
+
+            return dt;
         }
     }
 }
